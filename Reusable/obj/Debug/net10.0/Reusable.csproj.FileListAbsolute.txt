@@ -1,0 +1,12 @@
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\bin\Debug\net10.0\Reusable.deps.json
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\bin\Debug\net10.0\Reusable.dll
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\bin\Debug\net10.0\Reusable.pdb
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.csproj.AssemblyReference.cache
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.AssemblyInfoInputs.cache
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.AssemblyInfo.cs
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.csproj.CoreCompileInputs.cache
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.dll
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\refint\Reusable.dll
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.pdb
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\ref\Reusable.dll
