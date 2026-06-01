@@ -22,6 +22,8 @@ namespace Reusable.Services
 
 		public Rectangle CameraBounds { get; set; }
 
+		public Vector2 ScreenOffset { get; set; } = Vector2.Zero;
+
 		public Matrix TransformMatrix
 		{
 			get
@@ -30,7 +32,7 @@ namespace Reusable.Services
 			
 				return
 					Matrix.CreateTranslation(new Vector3(-roundedLocation.X, -roundedLocation.Y, 0)) *
-					Matrix.CreateTranslation(new Vector3(CameraBounds.Width * .5f, CameraBounds.Height * .5f, 0));
+					Matrix.CreateTranslation(new Vector3(CameraBounds.Width * .5f + ScreenOffset.X, CameraBounds.Height * .5f + ScreenOffset.Y, 0));
 			}
 		}
 
@@ -57,15 +59,18 @@ namespace Reusable.Services
 			float halfWidth = CameraBounds.Width * 0.5f;
 			float halfHeight = CameraBounds.Height * 0.5f;
 
+			float offsetX = ScreenOffset.X;
+			float offsetY = ScreenOffset.Y;
+
 			var locationX = MathHelper.Clamp(
 				location.X,
-				WorldBounds.Left + halfWidth,
-				WorldBounds.Right - halfWidth);
+				WorldBounds.Left + halfWidth + offsetX,
+				WorldBounds.Right - halfWidth + offsetX);
 
 			var locationY = MathHelper.Clamp(
 				location.Y,
-				WorldBounds.Top + halfHeight,
-				WorldBounds.Bottom - halfHeight);
+				WorldBounds.Top + halfHeight + offsetY,
+				WorldBounds.Bottom - halfHeight + offsetY);
 
 			location = new Vector2(locationX, locationY);	
 		}
@@ -74,18 +79,10 @@ namespace Reusable.Services
 		{
 			get
 			{
-				var inverseViewMatrix = Matrix.Invert(TransformMatrix);
-				var tl = Vector2.Transform(Vector2.Zero, inverseViewMatrix);
-				var tr = Vector2.Transform(new Vector2(CameraBounds.X, 0), inverseViewMatrix);
-				var bl = Vector2.Transform(new Vector2(0, CameraBounds.Y), inverseViewMatrix);
-				var br = Vector2.Transform(new Vector2(CameraBounds.X, CameraBounds.Y), inverseViewMatrix);
-				var min = new Vector2(
-					MathHelper.Min(tl.X, MathHelper.Min(tr.X, MathHelper.Min(bl.X, br.X))),
-					MathHelper.Min(tl.Y, MathHelper.Min(tr.Y, MathHelper.Min(bl.Y, br.Y))));
-				var max = new Vector2(
-					MathHelper.Max(tl.X, MathHelper.Max(tr.X, MathHelper.Max(bl.X, br.X))),
-					MathHelper.Max(tl.Y, MathHelper.Max(tr.Y, MathHelper.Max(bl.Y, br.Y))));
-				return new Rectangle((int)min.X, (int)min.Y, (int)(max.X - min.X), (int)(max.Y - min.Y));
+				int left = (int)(Location.X - CameraBounds.Width * 0.05f);
+				int top = (int)(Location.Y - CameraBounds.Height * 0.05f);
+
+				return new Rectangle(left, top, CameraBounds.Width, CameraBounds.Height);
 			}
 		}
 	}

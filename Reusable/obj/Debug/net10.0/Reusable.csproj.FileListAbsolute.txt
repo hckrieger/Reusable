@@ -6,6 +6,7 @@ C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10
 C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.AssemblyInfoInputs.cache
 C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.AssemblyInfo.cs
 C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.csproj.CoreCompileInputs.cache
+C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.sourcelink.json
 C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.dll
 C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\refint\Reusable.dll
 C:\Users\hckri\source\repos\MonoGame\libraries\Reusable\Reusable\obj\Debug\net10.0\Reusable.pdb

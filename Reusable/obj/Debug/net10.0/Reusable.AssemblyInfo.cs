@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Reusable")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+729b24c6e54088b6bfca499a645ba7634c04e8f7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Reusable")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Reusable")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

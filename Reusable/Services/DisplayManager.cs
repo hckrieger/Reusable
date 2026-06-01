@@ -117,21 +117,26 @@ namespace Reusable.Services
 			return new Vector2(xPos, yPos);
 		}
 
-		public void DrawRenderTarget(SpriteBatch _spriteBatch, Action drawRenderTarget, Matrix? matrix = null)
+		public void Draw(SpriteBatch _spriteBatch)
 		{
 
-			_graphics.GraphicsDevice.SetRenderTarget(renderTarget);
-
-			_spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: matrix ?? Matrix.Identity);
-			drawRenderTarget?.Invoke();
-			_spriteBatch.End();
-
-			_graphics.GraphicsDevice.SetRenderTarget(null);
-
-
-			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-			_spriteBatch.Draw(renderTarget, AdjustedViewport, Color.White);
-			_spriteBatch.End();
 		}
+
+		//public void DrawRenderTarget(SpriteBatch _spriteBatch, Action drawRenderTarget, Matrix? matrix = null)
+		//{
+
+		//	_graphics.GraphicsDevice.SetRenderTarget(renderTarget);
+
+		//	_spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: matrix ?? Matrix.Identity);
+		//	drawRenderTarget?.Invoke();
+		//	_spriteBatch.End();
+
+		//	_graphics.GraphicsDevice.SetRenderTarget(null);
+
+
+		//	_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+		//	_spriteBatch.Draw(renderTarget, AdjustedViewport, Color.White);
+		//	_spriteBatch.End();
+		//}
 	}
 }
