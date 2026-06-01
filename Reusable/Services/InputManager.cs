@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Reusable.Services
 {
-	public class InputManager(DisplayManager displayManager)
+	public class InputManager
 	{
 
 		private KeyboardState currentKeyState;
@@ -16,7 +16,60 @@ namespace Reusable.Services
 		private GamePadState currentGamePadState;
 		private GamePadState previousGamePadState;
 		private MouseState currentMouseState, previousMouseState;
+		DisplayManager displayManager;
 
+		public enum BindingType
+		{
+			None,
+			Platformer
+		}
+
+		public enum InputAction
+		{
+			Jump,
+			Attack,
+			Dash,
+			Interact,
+			MoveLeft,
+			MoveRight,
+			LookUp,
+			Crouch,
+			Pause
+			
+		}
+
+		private BindingType bindingType;
+
+		private Dictionary<BindingType, Dictionary<InputAction, Func<bool>>>? inputBindings { get; set; }
+
+		public Dictionary<InputAction, Func<bool>>? Binding { get; set; }
+
+		public InputManager(DisplayManager displayManager, BindingType bindingType = BindingType.None)
+		{
+			this.displayManager = displayManager;
+			this.bindingType = bindingType;
+
+			inputBindings = new Dictionary<BindingType, Dictionary<InputAction, Func<bool>>>();
+
+			Dictionary<InputAction, Func<bool>> platformerBindings = new Dictionary<InputAction, Func<bool>>
+			{
+				{ InputAction.MoveLeft,  () => IsKeyDown(Keys.A) || IsButtonDown(Buttons.DPadLeft) },
+				{ InputAction.MoveRight, () => IsKeyDown(Keys.D) || IsButtonDown(Buttons.DPadRight) },
+				{ InputAction.LookUp,    () => IsKeyDown(Keys.W) || IsButtonDown(Buttons.DPadUp) },
+				{ InputAction.Crouch,  () => IsKeyDown(Keys.S) || IsButtonDown(Buttons.DPadDown) },
+
+				{ InputAction.Jump,      () => IsKeyPressed(Keys.Space) || IsButtonPressed(Buttons.A) },
+				{ InputAction.Attack,    () => IsKeyPressed(Keys.U) || IsButtonPressed(Buttons.X) },
+				{ InputAction.Dash,      () => IsKeyPressed(Keys.O) || IsButtonPressed(Buttons.B) },
+				{ InputAction.Interact,  () => IsKeyPressed(Keys.E) || IsButtonPressed(Buttons.Y) },
+
+				{ InputAction.Pause,     () => IsKeyPressed(Keys.Escape) || IsButtonPressed(Buttons.Start) }
+			};
+
+			inputBindings?.Add(BindingType.Platformer, platformerBindings);
+
+			Binding = inputBindings?[bindingType];
+		}
 
 		public void Update()
 		{
