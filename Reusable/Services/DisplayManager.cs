@@ -117,10 +117,7 @@ namespace Reusable.Services
 			return new Vector2(xPos, yPos);
 		}
 
-		public void Draw(SpriteBatch _spriteBatch)
-		{
-
-		}
+	
 
 		//public void DrawRenderTarget(SpriteBatch _spriteBatch, Action drawRenderTarget, Matrix? matrix = null)
 		//{

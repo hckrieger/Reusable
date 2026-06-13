@@ -14,7 +14,7 @@ namespace Reusable
 	public class BitmapFont
 	{
 		
-		public BitmapFont(string text, Vector2 rawPosition, Color color, Alignment alignment = Alignment.Left, int scale = 1, string filePath = null)
+		public BitmapFont(string text, Vector2 rawPosition, Color color, Alignment alignment = Alignment.Left, int scale = 1, string? filePath = null)
 		{
 			
 			Position = rawPosition;
@@ -28,7 +28,7 @@ namespace Reusable
 		}
 
 		//A lighter weight initializer for buttons in which the button class sets the position in which this font is anchored to
-		public BitmapFont(string text, Color color, Alignment textAlignment = Alignment.Left, int scale = 1, string filePath = null)
+		public BitmapFont(string text, Color color, Alignment textAlignment = Alignment.Left, int scale = 1)
 		{
 			this.text = text;
 			Color = color;
@@ -66,11 +66,11 @@ namespace Reusable
 			}
 		}
 
-		private string renderedText;
+		private string? renderedText;
 
-		private string filePath;
+		private string? filePath;
 
-		public string FilePath
+		public string? FilePath
 		{
 			get => filePath ?? DefaultFilePath;
 			set => filePath = value;
@@ -181,7 +181,7 @@ namespace Reusable
 				Vector2 letterPosition = Position + new Vector2(Size.X * Scale * x, Size.Y * Scale * y);
 
 				if (Visible)
-					spriteBatch.Draw(texture, letterPosition, source, Color, 0f, Vector2.Zero, Scale, SpriteEffects.None, 0f);
+					spriteBatch.Draw(texture, letterPosition, source, Color, 0f, Vector2.Zero, Scale, SpriteEffects.None, .5f);
 				x++;
 			}
 

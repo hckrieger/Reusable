@@ -1,7 +1,7 @@
 {
   "version": 4,
   "targets": {
-    "net10.0": {
+    "net10.0-windows7.0": {
       "MonoGame.Framework.DesktopGL/3.8.4": {
         "type": "package",
         "dependencies": {
@@ -176,7 +176,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net10.0": [
+    "net10.0-windows7.0": [
       "MonoGame.Framework.DesktopGL >= 3.8.4"
     ]
   },
@@ -187,11 +187,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hckri\\source\\repos\\Game\\MonoGame\\libraries\\Reusable\\Reusable\\Reusable.csproj",
+      "projectUniqueName": "C:\\Users\\hckri\\source\\repos\\Game\\MonoGame\\Libraries\\Reusable\\Reusable\\Reusable.csproj",
       "projectName": "Reusable",
-      "projectPath": "C:\\Users\\hckri\\source\\repos\\Game\\MonoGame\\libraries\\Reusable\\Reusable\\Reusable.csproj",
+      "projectPath": "C:\\Users\\hckri\\source\\repos\\Game\\MonoGame\\Libraries\\Reusable\\Reusable\\Reusable.csproj",
       "packagesPath": "C:\\Users\\hckri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hckri\\source\\repos\\Game\\MonoGame\\libraries\\Reusable\\Reusable\\obj\\",
+      "outputPath": "C:\\Users\\hckri\\source\\repos\\Game\\MonoGame\\Libraries\\Reusable\\Reusable\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -202,7 +202,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net10.0"
+        "net10.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -210,9 +210,9 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net10.0": {
-          "framework": "net10.0",
-          "targetAlias": "net10.0",
+        "net10.0-windows7.0": {
+          "framework": "net10.0-windows7.0",
+          "targetAlias": "net10.0-windows7.0",
           "projectReferences": {}
         }
       },
@@ -229,9 +229,9 @@
       "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
-      "net10.0": {
-        "framework": "net10.0",
-        "targetAlias": "net10.0",
+      "net10.0-windows7.0": {
+        "framework": "net10.0-windows7.0",
+        "targetAlias": "net10.0-windows7.0",
         "dependencies": {
           "MonoGame.Framework.DesktopGL": {
             "target": "Package",
