@@ -66,6 +66,7 @@ namespace Reusable.Services
 				{ InputAction.Pause,     () => IsKeyPressed(Keys.Escape) || IsButtonPressed(Buttons.Start) }
 			};
 
+			inputBindings.Add(BindingType.None, default);
 			inputBindings?.Add(BindingType.Platformer, platformerBindings);
 
 			Binding = inputBindings?[bindingType];
