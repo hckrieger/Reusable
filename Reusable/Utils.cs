@@ -10,7 +10,7 @@ namespace Reusable
 {
 	public static class Utils
 	{
-
+		private static Random rand = new Random();
 
 		/// <summary>
 		/// Creates a solid color rectangle texture.
@@ -63,6 +63,14 @@ namespace Reusable
 			return new Point(x, y);
 		}
 
+		public static Rectangle IndexToSourceRectangle(int index, Point frameSize, int columns)
+		{
+			int x = (index % columns) * frameSize.X;
+			int y = (index / columns) * frameSize.Y;
+
+			return new Rectangle(x, y, frameSize.X, frameSize.Y);
+		}
+
 		public static void GridLoop<T>(T[,] Grid, Action<int, int> action)
 		{
 			for (int y = 0; y < Grid.GetLength(1); y++)
@@ -89,6 +97,16 @@ namespace Reusable
 			int ymin = Math.Max(rect1.Top, rect2.Top);
 			int ymax = Math.Min(rect1.Bottom, rect2.Bottom);
 			return new Rectangle(xmin, ymin, xmax - xmin, ymax - ymin);
+		}
+
+		public static int RandomIntegerFromZero(int max)
+		{
+			return rand.Next(max);
+		}
+
+		public static int RandomIntegerBetween(int min, int max)
+		{
+			return rand.Next(min, max);
 		}
 	}
 }
