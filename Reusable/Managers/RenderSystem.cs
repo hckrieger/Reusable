@@ -34,15 +34,15 @@ namespace Jewely
 
 		public void ClearData()
 		{
-			data.TextureKey = null;
-			data.Position = null;
-			data.SourceRectangle = null;
-			data.Color = null;
-			data.Rotation = null;
-			data.Origin = null;
-			data.Scale = null;
-			data.SpriteEffects = null;
-			data.LayerDepth = null;
+			data.TextureKey = [];
+			data.Position = [];
+			data.SourceRectangle = [];
+			data.Color = [];
+			data.Rotation = [];
+			data.Origin = [];
+			data.Scale = [];
+			data.SpriteEffects = [];
+			data.LayerDepth = [];
 			nth = 0;
 		}
 
@@ -51,12 +51,12 @@ namespace Jewely
 		public int CurrentId;
 
 
-		public void Draw(SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch, Func<string, Texture2D> textureSource)
 		{
 			for (int i = 0; i < nth; i++) 
 			{
 				spriteBatch.Draw(
-					Content.Load<Texture2D>(data.TextureKey[i]),
+					textureSource(data.TextureKey[i]),
 					data.Position[i],
 					data.SourceRectangle[i],
 					data.Color[i],
@@ -87,7 +87,7 @@ namespace Jewely
 
 	public struct RenderableDataInstance()
 	{
-		public string TextureKey;
+		public string TextureKey = string.Empty;
 		public Vector2 Position;
 		public Rectangle SourceRectangle;
 		public Color Color = Color.White;
