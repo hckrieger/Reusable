@@ -21,7 +21,8 @@ namespace Reusable.Services
 		public enum BindingType
 		{
 			None,
-			Platformer
+			Platformer,
+			TopDownAdventure
 		}
 
 		public enum InputAction
@@ -32,8 +33,14 @@ namespace Reusable.Services
 			Interact,
 			MoveLeft,
 			MoveRight,
+			MoveUp,
+			MoveDown,
 			LookUp,
 			Crouch,
+			UseItem,
+			Shield,
+			Map,
+			Inventory,
 			Pause
 			
 		}
@@ -51,7 +58,7 @@ namespace Reusable.Services
 
 			inputBindings = new Dictionary<BindingType, Dictionary<InputAction, Func<bool>>>();
 
-			Dictionary<InputAction, Func<bool>> platformerBindings = new Dictionary<InputAction, Func<bool>>
+			Dictionary<InputAction, Func<bool>> platformerBinding = new Dictionary<InputAction, Func<bool>>
 			{
 				{ InputAction.MoveLeft,  () => IsKeyDown(Keys.A) || IsButtonDown(Buttons.DPadLeft) },
 				{ InputAction.MoveRight, () => IsKeyDown(Keys.D) || IsButtonDown(Buttons.DPadRight) },
@@ -66,8 +73,28 @@ namespace Reusable.Services
 				{ InputAction.Pause,     () => IsKeyPressed(Keys.Escape) || IsButtonPressed(Buttons.Start) }
 			};
 
+			Dictionary<InputAction, Func<bool>> topDownAdventureBinding = new Dictionary<InputAction, Func<bool>>
+			{
+				{ InputAction.MoveLeft,  () => IsKeyDown(Keys.A) || IsButtonDown(Buttons.DPadLeft) },
+				{ InputAction.MoveRight, () => IsKeyDown(Keys.D) || IsButtonDown(Buttons.DPadRight) },
+				{ InputAction.MoveUp,    () => IsKeyDown(Keys.W) || IsButtonDown(Buttons.DPadUp) },
+				{ InputAction.MoveDown,  () => IsKeyDown(Keys.S) || IsButtonDown(Buttons.DPadDown) },
+
+				{ InputAction.Attack, () => IsKeyPressed(Keys.U) || IsButtonDown(Buttons.X) },
+				{ InputAction.Interact, () => IsKeyPressed(Keys.Space) || IsButtonDown(Buttons.A) },
+				{ InputAction.Shield, () => IsKeyPressed(Keys.O) || IsButtonDown(Buttons.RightShoulder) },
+				{ InputAction.UseItem, () => IsKeyPressed(Keys.I) || IsButtonDown(Buttons.B) },
+				{ InputAction.Inventory, () => IsKeyPressed(Keys.R) || IsButtonDown(Buttons.Y) },
+
+				{ InputAction.Map, () => IsKeyPressed(Keys.Enter) || IsButtonPressed(Buttons.Back) },
+				{ InputAction.Pause, () => IsKeyPressed(Keys.Escape) || IsButtonPressed(Buttons.Start) },
+				
+
+			};
+
 			inputBindings.Add(BindingType.None, default);
-			inputBindings?.Add(BindingType.Platformer, platformerBindings);
+			inputBindings?.Add(BindingType.Platformer, platformerBinding);
+			inputBindings?.Add(BindingType.TopDownAdventure, topDownAdventureBinding);
 
 			Binding = inputBindings?[bindingType];
 		}

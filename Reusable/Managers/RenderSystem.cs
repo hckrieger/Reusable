@@ -10,10 +10,12 @@ namespace Jewely
 		private RenderableDataStore data;
 		private ContentManager Content;
 		private int nth = 0;
-		public RenderSystem(Game game, int entityCount)
+		private Func<string, Texture2D> textureSource;
+		public RenderSystem(Game game, int entityCount, Func<string, Texture2D> textureSource)
 		{
 			Content = game.Services.GetService<ContentManager>();
 			data = new RenderableDataStore(entityCount);
+			this.textureSource = textureSource;
 		}
 
 		public int AddDataEntity(RenderableDataInstance dataInstance)
@@ -51,7 +53,7 @@ namespace Jewely
 		public int CurrentId;
 
 
-		public void Draw(SpriteBatch spriteBatch, Func<string, Texture2D> textureSource)
+		public void Draw(SpriteBatch spriteBatch)
 		{
 			for (int i = 0; i < nth; i++) 
 			{
