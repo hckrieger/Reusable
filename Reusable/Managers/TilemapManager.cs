@@ -4,9 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Reusable.Managers
 {
@@ -15,10 +17,12 @@ namespace Reusable.Managers
 
 		public TiledMap? TiledMap { get; private set; }
 		private Func<string, Texture2D> textureSource;
+		private RenderSystem renderSystem;
 
-		public TilemapManager(string tileMapPath, Func<string, Texture2D> textureSource)
+		public TilemapManager(string tileMapPath, Func<string, Texture2D> textureSource, Game game)
 		{
-			
+			this.textureSource = textureSource;
+			renderSystem = game.Services.GetService<RenderSystem>();
 
 			if (tileMapPath != null)
 			{
@@ -26,7 +30,6 @@ namespace Reusable.Managers
 			}
 
 
-			this.textureSource = textureSource;
 
 		}
 
@@ -44,10 +47,51 @@ namespace Reusable.Managers
 			}
 		}
 
+		
+
+
+
 		public void SetTileMapPath(string tileDataPath)
 		{
 			string json = File.ReadAllText(tileDataPath);
 			TiledMap = JsonSerializer.Deserialize<TiledMap>(json);
+
+
+
+			foreach (var layer in TiledMap.Layers)
+			{
+				if (layer.Type == "objectgroup")
+					continue;
+
+				if (layer.Properties.GetValue<bool>("RenderSystemIntegrate"))
+				{
+
+
+					for (int i = 0; i < layer.Data.Count; i++)
+					{
+						if (layer.Data[i] == 0)
+							continue;
+
+						TiledTileset tileset = FindTilesetForGid(layer.Data[i]);
+						Vector2 tilePosition = GetTilePosition(i);
+						Rectangle tileSource = GetTileSource(layer.Data[i], tileset);
+						Texture2D tilesetTexture = GetTileTexture(tileset);
+						string tilesetTexturePath = Path.ChangeExtension(tileset.Image, null);
+						
+
+						RenderableDataInstance renderData = new RenderableDataInstance
+						{
+							TextureKey = tilesetTexturePath,
+							Position = GetTilePosition(i),
+							SourceRectangle = tileSource,
+							LayerDepth = layer.Properties.GetValue<float>("LayerDepth")
+						};
+						renderSystem.AddDataEntity(renderData);
+					}
+				}
+			}
+
+			
 		}
 
 
@@ -56,7 +100,7 @@ namespace Reusable.Managers
 			foreach (TiledLayer layer in TiledMap.Layers)
 			{
 
-				if (layer.Type == "objectgroup")
+				if (layer.Type == "objectgroup" || layer.Properties.GetValue<bool>("RenderSystemIntegrate") == true)
 				{
 					continue;
 				}
@@ -73,8 +117,13 @@ namespace Reusable.Managers
 					Vector2 tilePosition = GetTilePosition(i);
 					Rectangle tileSource = GetTileSource(data, tileset);
 					Texture2D tilesetTexture = GetTileTexture(tileset);
+					float layerDepth = layer.Properties.GetValue<float>("LayerDepth") ;
 
-					spriteBatch.Draw(tilesetTexture, tilePosition, tileSource, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+				
+
+					layerDepth = (layerDepth == default) ? .5f : layerDepth;
+
+					spriteBatch.Draw(tilesetTexture, tilePosition, tileSource, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, layerDepth );
 
 				}
 			}
@@ -104,6 +153,8 @@ namespace Reusable.Managers
 
 			
 		}
+
+
 
 
 
@@ -311,14 +362,14 @@ namespace Reusable.Managers
 
 	public static class TiledPropertyExtensions
 	{
-		public static T GetValue<T>(this List<TiledProperty> propList, string name)
+		public static T? GetValue<T>(this List<TiledProperty> propList, string name)
 		{
 			var prop = propList.FirstOrDefault(m => m.Name == name);
 
 			if (prop == null)
-				throw new Exception($"Property '{name}' not found");
+				return default;
 
-			if (prop.Value is JsonElement element)
+			if (prop?.Value is JsonElement element)
 			{
 				switch (prop.Type)
 				{

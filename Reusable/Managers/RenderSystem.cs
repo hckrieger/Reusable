@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Jewely
+namespace Reusable
 {
 	public class RenderSystem
 	{
@@ -97,7 +97,7 @@ namespace Jewely
 		public Vector2 Origin = Vector2.Zero;
 		public Vector2 Scale = Vector2.One;
 		public SpriteEffects SpriteEffects = SpriteEffects.None;
-		public float LayerDepth = 1f;
+		public float LayerDepth = .5f;
 		
 	}
 
