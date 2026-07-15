@@ -28,10 +28,10 @@ namespace Reusable.Services
 		{
 			get
 			{ 
-				var roundedLocation = new Vector2((float)Math.Round(Location.X), (float)Math.Round(Location.Y));
+				//var roundedLocation = new Vector2((int)Location.X, (int)Location.Y);
 			
 				return
-					Matrix.CreateTranslation(new Vector3(-roundedLocation.X, -roundedLocation.Y, 0)) *
+					Matrix.CreateTranslation(new Vector3(-Location.X, -Location.Y, 0)) *
 					Matrix.CreateTranslation(new Vector3(CameraBounds.Width * .5f + ScreenOffset.X, CameraBounds.Height * .5f + ScreenOffset.Y, 0));
 			}
 		}

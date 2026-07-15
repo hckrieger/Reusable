@@ -119,8 +119,6 @@ namespace Reusable.Managers
 					Texture2D tilesetTexture = GetTileTexture(tileset);
 					float layerDepth = layer.Properties.GetValue<float>("LayerDepth") ;
 
-				
-
 					layerDepth = (layerDepth == default) ? .5f : layerDepth;
 
 					spriteBatch.Draw(tilesetTexture, tilePosition, tileSource, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, layerDepth );
